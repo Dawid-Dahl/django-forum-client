@@ -7,8 +7,6 @@ const App: React.FC = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	useEffect(() => {
-		console.log("YO!");
-		console.log(isUserLoggedIn());
 		isUserLoggedIn() ? setIsLoggedIn(true) : setIsLoggedIn(false);
 	}, [isLoggedIn]);
 
