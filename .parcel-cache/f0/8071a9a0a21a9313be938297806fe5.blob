@@ -1,0 +1,39 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.darkTheme = exports.useStyles = void 0;
+
+var _styles = require("@material-ui/core/styles");
+
+const useStyles = (0, _styles.makeStyles)(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%",
+    // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+}));
+exports.useStyles = useStyles;
+const darkTheme = (0, _styles.createMuiTheme)({
+  palette: {
+    type: "light",
+    primary: {
+      main: "#3f9bbe"
+    }
+  }
+});
+exports.darkTheme = darkTheme;

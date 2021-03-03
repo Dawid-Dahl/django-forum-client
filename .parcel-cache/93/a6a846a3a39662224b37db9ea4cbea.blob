@@ -1,0 +1,75 @@
+"use strict";
+
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.UnauthenticatedApp = void 0;
+
+  var _react = _interopRequireDefault(require("react"));
+
+  var _reactRouter = require("react-router");
+
+  var _Register = _interopRequireDefault(require("./Register"));
+
+  var _Login = _interopRequireDefault(require("./Login"));
+
+  var _jsxFileName = "/Volumes/Seagate Backup Plus Drive/Dawid Programming Files/Projects/django-forum-client/src/components/UnauthenticatedApp.tsx";
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  const UnauthenticatedApp = () => {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouter.Switch, {
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 9,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/_react.default.createElement(_reactRouter.Route, {
+      path: "/register",
+      component: _Register.default,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 10,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/_react.default.createElement(_reactRouter.Route, {
+      path: "/login",
+      component: _Login.default,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 11,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/_react.default.createElement(_reactRouter.Route, {
+      path: "/",
+      component: _Login.default,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 12,
+        columnNumber: 5
+      }
+    })));
+  };
+
+  exports.UnauthenticatedApp = UnauthenticatedApp;
+  _c = UnauthenticatedApp;
+
+  var _c;
+
+  $RefreshReg$(_c, "UnauthenticatedApp");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

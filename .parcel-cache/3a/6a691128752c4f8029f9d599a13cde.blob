@@ -1,0 +1,67 @@
+"use strict";
+
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _react = _interopRequireWildcard(require("react"));
+
+  var _AuthenticatedApp = require("./components/AuthenticatedApp");
+
+  var _UnauthenticatedApp = require("./components/UnauthenticatedApp");
+
+  var _utils = require("./utils/utils");
+
+  var _jsxFileName = "/Volumes/Seagate Backup Plus Drive/Dawid Programming Files/Projects/django-forum-client/src/App.tsx",
+      _s = $RefreshSig$();
+
+  function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+  const App = () => {
+    _s();
+
+    const [isLoggedIn, setIsLoggedIn] = (0, _react.useState)(false);
+    (0, _react.useEffect)(() => {
+      (0, _utils.isUserLoggedIn)() ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    }, []);
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isLoggedIn ? /*#__PURE__*/_react.default.createElement(_AuthenticatedApp.AuthenticatedApp, {
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13,
+        columnNumber: 25
+      }
+    }) : /*#__PURE__*/_react.default.createElement(_UnauthenticatedApp.UnauthenticatedApp, {
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13,
+        columnNumber: 48
+      }
+    }));
+  };
+
+  _s(App, "fKLMlyFH2GMrhNeUDpp+0z1yiCo=");
+
+  _c = App;
+  var _default = App;
+  exports.default = _default;
+
+  var _c;
+
+  $RefreshReg$(_c, "App");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

@@ -1,0 +1,255 @@
+"use strict";
+
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _react = _interopRequireWildcard(require("react"));
+
+  var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+  var _Avatar = _interopRequireDefault(require("@material-ui/core/Avatar"));
+
+  var _Button = _interopRequireDefault(require("@material-ui/core/Button"));
+
+  var _TextField = _interopRequireDefault(require("@material-ui/core/TextField"));
+
+  var _Link = _interopRequireDefault(require("@material-ui/core/Link"));
+
+  var _Grid = _interopRequireDefault(require("@material-ui/core/Grid"));
+
+  var _LockOutlined = _interopRequireDefault(require("@material-ui/icons/LockOutlined"));
+
+  var _Typography = _interopRequireDefault(require("@material-ui/core/Typography"));
+
+  var _Container = _interopRequireDefault(require("@material-ui/core/Container"));
+
+  var _styles = require("@material-ui/core/styles");
+
+  var _reactRouterDom = require("react-router-dom");
+
+  var _styles2 = require("../material-ui/styles");
+
+  var _jsxFileName = "/Volumes/Seagate Backup Plus Drive/Dawid Programming Files/Projects/django-forum-client/src/components/Login.tsx",
+      _s = $RefreshSig$();
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+  const Login = () => {
+    _s();
+
+    const history = (0, _reactRouterDom.useHistory)();
+    const [formData, setFormData] = (0, _react.useState)({
+      email: "",
+      password: ""
+    });
+
+    const handleChange = e => {
+      setFormData({ ...formData,
+        [e.target.name]: e.target.value.trim()
+      });
+    };
+
+    const classes = (0, _styles2.useStyles)();
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      fetch(`${"http://127.0.0.1:8000"}/api/token/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(Object.freeze(formData))
+      }).then(res => res.json()).then(data => {
+        if (data.access && data.refresh) {
+          localStorage.setItem("x-token", data.access);
+          localStorage.setItem("refresh-token", data.refresh);
+          history.push("/admin");
+        } else {
+          alert(data.detail);
+        }
+      }).catch(console.error);
+    };
+
+    return /*#__PURE__*/_react.default.createElement(OuterWrapper, {
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58,
+        columnNumber: 3
+      }
+    }, /*#__PURE__*/_react.default.createElement(_styles.ThemeProvider, {
+      theme: _styles2.darkTheme,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 59,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/_react.default.createElement(_Container.default, {
+      component: "main",
+      maxWidth: "xs",
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 60,
+        columnNumber: 5
+      }
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: classes.paper,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 61,
+        columnNumber: 6
+      }
+    }, /*#__PURE__*/_react.default.createElement(_Avatar.default, {
+      className: classes.avatar,
+      style: {
+        backgroundColor: "#3f9bbe"
+      },
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 62,
+        columnNumber: 7
+      }
+    }, /*#__PURE__*/_react.default.createElement(_LockOutlined.default, {
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 63,
+        columnNumber: 8
+      }
+    })), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+      component: "h1",
+      variant: "h5",
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65,
+        columnNumber: 7
+      }
+    }, "Sign in"), /*#__PURE__*/_react.default.createElement("form", {
+      className: classes.form,
+      onSubmit: handleSubmit,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 68,
+        columnNumber: 7
+      }
+    }, /*#__PURE__*/_react.default.createElement(_TextField.default, {
+      variant: "outlined",
+      margin: "normal",
+      required: true,
+      fullWidth: true,
+      id: "email",
+      label: "Email Address",
+      name: "email",
+      autoComplete: "email",
+      autoFocus: true,
+      onChange: handleChange,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69,
+        columnNumber: 8
+      }
+    }), /*#__PURE__*/_react.default.createElement(_TextField.default, {
+      variant: "outlined",
+      margin: "normal",
+      required: true,
+      fullWidth: true,
+      name: "password",
+      label: "Password",
+      type: "password",
+      id: "password",
+      autoComplete: "current-password",
+      onChange: handleChange,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 81,
+        columnNumber: 8
+      }
+    }), /*#__PURE__*/_react.default.createElement(_Button.default, {
+      type: "submit",
+      fullWidth: true,
+      variant: "contained",
+      color: "default",
+      className: classes.submit,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 93,
+        columnNumber: 8
+      }
+    }, "Sign In"), /*#__PURE__*/_react.default.createElement(_Grid.default, {
+      container: true,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 102,
+        columnNumber: 8
+      }
+    }, /*#__PURE__*/_react.default.createElement(_Grid.default, {
+      item: true,
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 108,
+        columnNumber: 9
+      }
+    }, /*#__PURE__*/_react.default.createElement(_Link.default, {
+      href: "/register",
+      variant: "body2",
+      __self: void 0,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 109,
+        columnNumber: 10
+      }
+    }, "Don't have an account? Sign Up"))))))));
+  };
+
+  _s(Login, "w/AEBTrSF0627EsftUwthBDb0qA=", false, function () {
+    return [_reactRouterDom.useHistory, _styles2.useStyles];
+  });
+
+  _c = Login;
+  var _default = Login;
+  exports.default = _default;
+  const OuterWrapper = _c2 = _styledComponents.default.div`
+	background-color: var(--main-color);
+	height: 100vh;
+`;
+  const InnerWrapper = _styledComponents.default.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: white;
+`;
+
+  var _c, _c2;
+
+  $RefreshReg$(_c, "Login");
+  $RefreshReg$(_c2, "OuterWrapper");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
