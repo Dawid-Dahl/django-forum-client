@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server.js",
     "dev": "parcel ./src/index.html",
-    "build": "tsc && rm server.ts && parcel build src/index.html --no-source-maps && rm -r ./src"
+    "build": "tsc && rm server.ts && parcel build src/index.html --dist-dir ./dist --no-source-maps && rm -r ./src"
   },
   "repository": {
     "type": "git",
