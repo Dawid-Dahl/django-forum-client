@@ -50,7 +50,7 @@ const Register = () => {
 					if (data.email && data.user_name) {
 						getAndSetTokens(formData.email, formData.password).then(tokens => {
 							if (tokens) {
-								history.push("/");
+								history.push("/main");
 							} else {
 								alert("We couldn't log you in at this time.");
 							}

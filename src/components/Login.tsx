@@ -46,7 +46,7 @@ const Login = () => {
 				if (data.access && data.refresh) {
 					localStorage.setItem("x-token", data.access);
 					localStorage.setItem("refresh-token", data.refresh);
-					history.push("/");
+					history.push("/main");
 				} else {
 					alert(data.detail);
 				}
