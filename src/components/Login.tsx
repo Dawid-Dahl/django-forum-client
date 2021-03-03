@@ -7,14 +7,16 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
-import {useHistory} from "react-router-dom";
-import {JWTFetch} from "../utils/utils";
+import {ThemeProvider} from "@material-ui/core/styles";
+import {useHistory, Redirect} from "react-router-dom";
 import {darkTheme, useStyles} from "../material-ui/styles";
 
-const Login = () => {
+type Props = {
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Login: React.FC<Props> = ({setIsLoggedIn}) => {
 	const history = useHistory();
 
 	const [formData, setFormData] = useState({
@@ -46,15 +48,13 @@ const Login = () => {
 				if (data.access && data.refresh) {
 					localStorage.setItem("x-token", data.access);
 					localStorage.setItem("refresh-token", data.refresh);
+					setIsLoggedIn(true);
 					history.push("/main");
 				} else {
 					alert(data.detail);
 				}
 			})
-			.catch(e => {
-				console.error(e);
-				alert("Are you sure you're registered?");
-			});
+			.catch(console.error);
 	};
 
 	return (
