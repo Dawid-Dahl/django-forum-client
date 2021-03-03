@@ -46,12 +46,15 @@ const Login = () => {
 				if (data.access && data.refresh) {
 					localStorage.setItem("x-token", data.access);
 					localStorage.setItem("refresh-token", data.refresh);
-					history.push("/admin");
+					history.push("/");
 				} else {
 					alert(data.detail);
 				}
 			})
-			.catch(console.error);
+			.catch(e => {
+				console.error(e);
+				alert("Are you sure you're registered?");
+			});
 	};
 
 	return (
