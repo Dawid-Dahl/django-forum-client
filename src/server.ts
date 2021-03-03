@@ -5,6 +5,8 @@ import errorhandler from "errorhandler";
 import morgan from "morgan";
 import cors from "cors";
 
+console.log(process.env.DJANGO_API_URL);
+
 export const app = express();
 
 const PORT = process.env.PORT || 1234;
