@@ -122,7 +122,6 @@ const Login = () => {
 export default Login;
 
 const OuterWrapper = styled.div`
-	background-color: var(--main-color);
 	height: 100vh;
 `;
 

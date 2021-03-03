@@ -141,7 +141,6 @@ const Register = () => {
 export default Register;
 
 const OuterWrapper = styled.div`
-	background-color: var(--main-color);
 	height: 100vh;
 `;
 
