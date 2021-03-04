@@ -89,11 +89,10 @@ const NewDiscussion: React.FC<Props> = ({setIsLoggedIn}) => {
 								margin="normal"
 								required
 								fullWidth
-								id="email"
-								label="Email Address"
-								name="email"
-								autoComplete="email"
-								autoFocus
+								name="title"
+								label="Title"
+								type="title"
+								id="title"
 								onChange={handleChange}
 							/>
 							<TextField
@@ -101,22 +100,10 @@ const NewDiscussion: React.FC<Props> = ({setIsLoggedIn}) => {
 								margin="normal"
 								required
 								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
-								autoComplete="current-password"
-								onChange={handleChange}
-							/>
-							<TextField
-								variant="outlined"
-								margin="normal"
-								required
-								fullWidth
-								name="user_name"
-								label="Username"
-								type="user_name"
-								id="user_name"
+								name="content"
+								label="Content"
+								type="content"
+								id="content"
 								onChange={handleChange}
 							/>
 							<Button
