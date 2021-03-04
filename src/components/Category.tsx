@@ -58,11 +58,32 @@ const Category: React.FC<Props> = () => {
 
 export default Category;
 
-const OuterWrapper = styled.div``;
+const OuterWrapper = styled.div`
+	h1 {
+		text-align: center;
+	}
+`;
 
 const InnerWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
+	a {
+		min-width: 70%;
+		padding: 1.5em;
+		background-color: var(--delete-color);
+		margin: 1em;
+		text-decoration: none;
+		border-radius: 10px;
+		color: white;
+		font-weight: lighter;
+		text-align: center;
+		transition: all 0.2s;
+
+		:hover {
+			background-color: var(--delete-color-hover);
+		}
+	}
 `;

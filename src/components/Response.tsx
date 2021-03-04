@@ -5,21 +5,37 @@ type Props = TPost;
 
 const Response: React.FC<Props> = props => {
 	return (
-		<OuterWrapper>
-			<InnerWrapper>
-				<h6>Reply: {props.content}</h6>
-			</InnerWrapper>
-		</OuterWrapper>
+		<Wrapper>
+			<p>Reply: {props.content}</p>
+		</Wrapper>
 	);
 };
 
 export default Response;
 
-const OuterWrapper = styled.div``;
-
-const InnerWrapper = styled.div`
+const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
+	min-width: 70%;
+	height: auto;
+	padding: 0.5em 1em;
+	background-color: var(--delete-color);
+	margin: 1em;
+	text-decoration: none;
+	border-radius: 10px;
+	color: white;
+	font-weight: lighter;
+	text-align: center;
+	transition: all 0.2s;
+
+	p {
+		font-size: 1em;
+	}
+
+	:hover {
+		background-color: var(--delete-color-hover);
+	}
 `;

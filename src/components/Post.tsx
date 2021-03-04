@@ -44,7 +44,7 @@ const Post: React.FC<Props> = () => {
 			<InnerWrapper>
 				{post && (
 					<>
-						<h1>This Is A Post</h1>
+						<h1>Post: {post.title}</h1>
 						<h3>{post.content}</h3>
 						<p>The replies:</p>
 						{responses &&
