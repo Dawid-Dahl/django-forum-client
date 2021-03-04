@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import Post from "./Post";
 
@@ -34,6 +35,7 @@ const Category: React.FC<Props> = () => {
 			.then(res => res.json())
 			.then(data => {
 				setPostsByCategory(data);
+				console.log("Posts by category: ", postsByCategory);
 			})
 			.catch(console.error);
 	}, []);
@@ -44,7 +46,9 @@ const Category: React.FC<Props> = () => {
 				<h1>Category: {category.title}</h1>
 				<InnerWrapper>
 					{postsByCategory.map(post => (
-						<Post key={post.id} id={post.id} content={post.content} />
+						<Link key={post.id} to={`/forum/post/${post.id}`}>
+							<p>{post.title}</p>
+						</Link>
 					))}
 				</InnerWrapper>
 			</OuterWrapper>

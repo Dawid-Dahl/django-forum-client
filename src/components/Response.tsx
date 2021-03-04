@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {
-	content: string;
-	posts: Array<TPost>;
-};
+type Props = TPost;
 
-const Response: React.FC<Props> = ({content, posts}) => {
+const Response: React.FC<Props> = props => {
 	return (
 		<OuterWrapper>
 			<InnerWrapper>
-				<h6>Reply: {content}</h6>
+				<h6>Reply: {props.content}</h6>
 			</InnerWrapper>
 		</OuterWrapper>
 	);

@@ -1,21 +1,56 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Response from "./Response";
 
-type Props = {
-	id: number;
-	content: string;
-};
+type Props = {};
 
-const Post: React.FC<Props> = ({id, content}) => {
+const Post: React.FC<Props> = () => {
+	const [post, setPost] = useState<TPost | null>(null);
+	const [responses, setResponses] = useState<TPost[] | null>(null);
+
+	const postId = location.pathname.split("/")[3];
+
+	useEffect(() => {
+		fetch(`${process.env.DJANGO_API_URL}/api/post/detail/${postId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then(res => res.json())
+			.then(data => {
+				setPost(data);
+			})
+			.catch(console.error);
+	}, []);
+
+	useEffect(() => {
+		fetch(`${process.env.DJANGO_API_URL}/api/post/replies/${postId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log("REPLIES", responses);
+				setResponses(data);
+			})
+			.catch(console.error);
+	}, []);
+
 	return (
 		<OuterWrapper>
 			<InnerWrapper>
-				<h1>{content}</h1>
-				<h3>Replies:</h3>
-				{/* {filteredByCategory.map(response => (
-					<Response key={response.id} content={response.content} posts={posts} />
-				))} */}
+				{post && (
+					<>
+						<h1>This Is A Post</h1>
+						<h3>{post.content}</h3>
+						<p>The replies:</p>
+						{responses &&
+							responses.map(response => <Response {...response} key={response.id} />)}
+					</>
+				)}
 			</InnerWrapper>
 		</OuterWrapper>
 	);
