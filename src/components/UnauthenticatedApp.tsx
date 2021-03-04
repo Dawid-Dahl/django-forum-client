@@ -12,6 +12,11 @@ export const UnauthenticatedApp: React.FC<Props> = ({setIsLoggedIn}) => {
 		<>
 			<Switch>
 				<Route
+					exact
+					path="/"
+					render={props => <Login {...props} setIsLoggedIn={setIsLoggedIn} />}
+				/>
+				<Route
 					path="/login"
 					render={props => <Login {...props} setIsLoggedIn={setIsLoggedIn} />}
 				/>

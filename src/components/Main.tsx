@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {isUserLoggedIn} from "../utils/utils";
+import Forum from "./Forum";
 
 type Props = {
 	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,6 +11,6 @@ const Main: React.FC<Props> = ({setIsLoggedIn}) => {
 		isUserLoggedIn() ? setIsLoggedIn(true) : setIsLoggedIn(false);
 	}, []);
 
-	return <h1>MAIN!</h1>;
+	return <Forum />;
 };
 export default Main;
