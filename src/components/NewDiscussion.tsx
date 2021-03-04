@@ -21,9 +21,8 @@ const NewDiscussion: React.FC<Props> = ({setIsLoggedIn}) => {
 	const history = useHistory();
 
 	const [formData, setFormData] = useState({
-		email: "",
-		password: "",
-		user_name: "",
+		title: "",
+		content: "",
 	});
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,13 +30,15 @@ const NewDiscussion: React.FC<Props> = ({setIsLoggedIn}) => {
 			...formData,
 			[e.target.name]: e.target.value.trim(),
 		});
+
+		console.log(formData);
 	};
 
 	const classes = useStyles();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		fetch(`${process.env.DJANGO_API_URL}/api/users/register/`, {
+		fetch(`${process.env.DJANGO_API_URL}/api/post/create/`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -45,30 +46,9 @@ const NewDiscussion: React.FC<Props> = ({setIsLoggedIn}) => {
 			body: JSON.stringify(Object.freeze(formData)),
 		})
 			.then(res => res.json())
-			.then(
-				(data: {
-					email?: string | string[];
-					user_name?: string | string[];
-					password?: string | string[];
-				}) => {
-					if (data.email && data.user_name) {
-						getAndSetTokens(formData.email, formData.password).then(tokens => {
-							if (tokens) {
-								setIsLoggedIn(true);
-								history.push("/forum");
-							} else {
-								alert("We couldn't log you in at this time.");
-							}
-						});
-					} else if (Array.isArray(data.email)) {
-						alert(data.email.reduce((acc, cur) => `${acc} ${cur}`.trim(), ""));
-					} else if (Array.isArray(data.password)) {
-						alert(data.password.reduce((acc, cur) => `${acc} ${cur}`.trim(), ""));
-					} else {
-						alert(data);
-					}
-				}
-			)
+			.then(data => {
+				console.log(data);
+			})
 			.catch(console.error);
 	};
 
