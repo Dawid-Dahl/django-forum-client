@@ -25,7 +25,7 @@ const Forum = () => {
 	}, []);
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		const res = getResponseByPrompt("What do you want your discussion to be called?");
+		const res = getResponseByPrompt("What do you want the category to be called?");
 
 		if (res) setPromptResult(res);
 
@@ -51,7 +51,7 @@ const Forum = () => {
 		<OuterWrapper>
 			<h1>Forum</h1>
 			<InnerWrapper>
-				<Button onClick={handleClick}>Start New Discussion</Button>
+				<Button onClick={handleClick}>New Category</Button>
 				{categories.map(category => (
 					<Link key={category.id} to={`/forum/category/${category.id}`}>
 						<p>{category.title}</p>
