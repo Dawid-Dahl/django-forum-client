@@ -7,6 +7,7 @@ type Props = Pick<TCategory, "id" | "title">;
 
 const Category: React.FC<Props> = ({id, title}) => {
 	const [posts, setPosts] = useState<Array<TPost>>([]);
+	const [postsByCategory, setPostsByCategory] = useState<Array<TPost>>([]);
 
 	useEffect(() => {
 		fetch(`${process.env.DJANGO_API_URL}/api/post/all`, {
@@ -17,19 +18,20 @@ const Category: React.FC<Props> = ({id, title}) => {
 		})
 			.then(res => res.json())
 			.then(data => {
+				setPosts(data);
 				const category = parseInt(location.pathname.split("/")[3]);
 				const filteredByCategory = data.filter((post: any) => post.category === category);
-				setPosts(filteredByCategory);
+				setPostsByCategory(filteredByCategory);
 			})
 			.catch(console.error);
 	}, []);
 
 	return (
 		<OuterWrapper>
-			<h1>{title}</h1>
+			<h1>Category: {title}</h1>
 			<InnerWrapper>
-				{posts.map(post => (
-					<Post key={post.id} id={post.id} content={post.content} />
+				{postsByCategory.map(post => (
+					<Post key={post.id} id={post.id} content={post.content} posts={posts} />
 				))}
 			</InnerWrapper>
 		</OuterWrapper>
