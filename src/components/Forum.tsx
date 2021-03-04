@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Category from "./Category";
 import TCategory from "./Category";
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 
 const Forum = () => {
 	const [categories, setCategories] = useState<Array<TCategory>>([]);
@@ -18,6 +18,7 @@ const Forum = () => {
 			.then(data => {
 				console.log(data);
 				setCategories(data);
+				console.log(categories);
 			})
 			.catch(console.error);
 	}, []);
@@ -27,8 +28,8 @@ const Forum = () => {
 			<h1>Forum</h1>
 			<InnerWrapper>
 				{categories.map(category => (
-					<Link key={category.id} href={`/forum/category/${category.id}`}>
-						<Category key={category.id} id={category.id} title={category.title} />
+					<Link key={category.id} to={`/forum/category/${category.id}`}>
+						<p>{category.title}</p>
 					</Link>
 				))}
 			</InnerWrapper>

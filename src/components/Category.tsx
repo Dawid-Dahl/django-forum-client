@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import Link from "@material-ui/core/Link";
 import Post from "./Post";
 
-type Props = Pick<TCategory, "id" | "title">;
+type Props = {};
 
-const Category: React.FC<Props> = ({id, title}) => {
-	const [posts, setPosts] = useState<Array<TPost>>([]);
+const Category: React.FC<Props> = () => {
+	const [category, setCategory] = useState<TCategory | null>(null);
 	const [postsByCategory, setPostsByCategory] = useState<Array<TPost>>([]);
 
+	const categoryId = location.pathname.split("/")[3];
+
 	useEffect(() => {
-		fetch(`${process.env.DJANGO_API_URL}/api/post/all`, {
+		fetch(`${process.env.DJANGO_API_URL}/api/category/detail/${categoryId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -18,23 +19,36 @@ const Category: React.FC<Props> = ({id, title}) => {
 		})
 			.then(res => res.json())
 			.then(data => {
-				setPosts(data);
-				const category = parseInt(location.pathname.split("/")[3]);
-				const filteredByCategory = data.filter((post: any) => post.category === category);
-				setPostsByCategory(filteredByCategory);
+				setCategory(data);
+			})
+			.catch(console.error);
+	}, []);
+
+	useEffect(() => {
+		fetch(`${process.env.DJANGO_API_URL}/api/post/category/${categoryId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then(res => res.json())
+			.then(data => {
+				setPostsByCategory(data);
 			})
 			.catch(console.error);
 	}, []);
 
 	return (
-		<OuterWrapper>
-			<h1>Category: {title}</h1>
-			<InnerWrapper>
-				{postsByCategory.map(post => (
-					<Post key={post.id} id={post.id} content={post.content} posts={posts} />
-				))}
-			</InnerWrapper>
-		</OuterWrapper>
+		category && (
+			<OuterWrapper>
+				<h1>Category: {category.title}</h1>
+				<InnerWrapper>
+					{postsByCategory.map(post => (
+						<Post key={post.id} id={post.id} content={post.content} />
+					))}
+				</InnerWrapper>
+			</OuterWrapper>
+		)
 	);
 };
 
