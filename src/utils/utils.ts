@@ -155,3 +155,9 @@ export const logout = () => {
 		console.error("No tokens in local storage.");
 	}
 };
+
+export const getResponseByPrompt = (msg: string): string | null => {
+	const res = prompt(msg);
+
+	return res;
+};

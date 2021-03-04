@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
-import {JWTFetch} from "../utils/utils";
+import {getResponseByPrompt, JWTFetch} from "../utils/utils";
 
 const Forum = () => {
 	const [categories, setCategories] = useState<Array<TCategory>>([]);
@@ -25,9 +25,7 @@ const Forum = () => {
 	}, []);
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		const res = prompt("What do you want your discussion to be called?");
-
-		console.log(res);
+		const res = getResponseByPrompt("What do you want your discussion to be called?");
 
 		if (res) setPromptResult(res);
 
