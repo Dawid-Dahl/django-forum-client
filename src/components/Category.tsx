@@ -2,12 +2,15 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import Post from "./Post";
+import Button from "@material-ui/core/Button";
+import {useHistory} from "react-router-dom";
 
 type Props = {};
 
 const Category: React.FC<Props> = () => {
 	const [category, setCategory] = useState<TCategory | null>(null);
 	const [postsByCategory, setPostsByCategory] = useState<Array<TPost>>([]);
+	const history = useHistory();
 
 	const categoryId = location.pathname.split("/")[3];
 
@@ -40,35 +43,36 @@ const Category: React.FC<Props> = () => {
 			.catch(console.error);
 	}, []);
 
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		history.push("/forum/new");
+	};
+
 	return (
 		category && (
-			<OuterWrapper>
+			<Wrapper>
 				<h1>Category: {category.title}</h1>
-				<InnerWrapper>
-					{postsByCategory.map(post => (
-						<Link key={post.id} to={`/forum/post/${post.id}`}>
-							<p>{post.title}</p>
-						</Link>
-					))}
-				</InnerWrapper>
-			</OuterWrapper>
+				<Button onClick={handleClick}>Start A New Discussion</Button>
+				{postsByCategory.map(post => (
+					<Link key={post.id} to={`/forum/post/${post.id}`}>
+						<p>{post.title}</p>
+					</Link>
+				))}
+			</Wrapper>
 		)
 	);
 };
 
 export default Category;
 
-const OuterWrapper = styled.div`
-	h1 {
-		text-align: center;
-	}
-`;
-
-const InnerWrapper = styled.div`
+const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
+	h1 {
+		text-align: center;
+	}
 
 	a {
 		min-width: 70%;

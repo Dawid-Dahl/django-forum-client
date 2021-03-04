@@ -1,6 +1,7 @@
 import React from "react";
 import {Switch, Route} from "react-router";
 import Category from "./Category";
+import NewDiscussion from "./NewDiscussion";
 import Main from "./Main";
 import Post from "./Post";
 
@@ -13,6 +14,7 @@ export const AuthenticatedApp: React.FC<Props> = ({setIsLoggedIn}) => {
 		<>
 			<Switch>
 				<Route path={`/forum/post/:id`} component={Post} />
+				<Route path={`/forum/new`} component={NewDiscussion} />
 				<Route path={`/forum/category/:id`} component={Category} />
 				<Route
 					path="/forum"
