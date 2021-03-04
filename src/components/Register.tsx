@@ -55,7 +55,7 @@ const Register: React.FC<Props> = ({setIsLoggedIn}) => {
 						getAndSetTokens(formData.email, formData.password).then(tokens => {
 							if (tokens) {
 								setIsLoggedIn(true);
-								history.push("/main");
+								history.push("/forum");
 							} else {
 								alert("We couldn't log you in at this time.");
 							}

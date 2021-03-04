@@ -1,4 +1,4 @@
-type Category = {
+type TCategory = {
 	id: number;
 	title: string;
 	country: string;
@@ -6,12 +6,12 @@ type Category = {
 	updated_at?: string;
 };
 
-type Post = {
+type TPost = {
 	id: number;
-	parent: Post | null;
+	parent: TPost | null;
 	author: number;
 	country: string;
-	category: Category;
+	category: TCategory;
 	title: string;
 	content: string;
 	view_count: number;

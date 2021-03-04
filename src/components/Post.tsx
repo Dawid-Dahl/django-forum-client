@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Post = () => {
+type Props = Pick<TPost, "id" | "content">;
+
+const Post: React.FC<Props> = ({id, content}) => {
 	return (
 		<OuterWrapper>
 			<InnerWrapper>
-				<h1>Post</h1>
+				<h1>{content}</h1>
 			</InnerWrapper>
 		</OuterWrapper>
 	);

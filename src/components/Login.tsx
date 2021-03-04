@@ -49,7 +49,7 @@ const Login: React.FC<Props> = ({setIsLoggedIn}) => {
 					localStorage.setItem("x-token", data.access);
 					localStorage.setItem("refresh-token", data.refresh);
 					setIsLoggedIn(true);
-					history.push("/main");
+					history.push("/forum");
 				} else {
 					alert(data.detail);
 				}
