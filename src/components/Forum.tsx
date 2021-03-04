@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import Category from "./Category";
-import TCategory from "./Category";
+import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 
 const Forum = () => {
@@ -27,6 +26,7 @@ const Forum = () => {
 		<OuterWrapper>
 			<h1>Forum</h1>
 			<InnerWrapper>
+				<Button>Start New Discussion</Button>
 				{categories.map(category => (
 					<Link key={category.id} to={`/forum/category/${category.id}`}>
 						<p>{category.title}</p>
@@ -41,8 +41,26 @@ export default Forum;
 
 const OuterWrapper = styled.div`
 	height: 100vh;
+
 	h1 {
 		text-align: center;
+	}
+
+	a {
+		width: 30%;
+		padding: 1.5em;
+		background-color: var(--main-color);
+		margin: 1em;
+		text-decoration: none;
+		border-radius: 10px;
+		color: white;
+		font-weight: lighter;
+		text-align: center;
+		transition: all 0.2s;
+
+		:hover {
+			background-color: var(--main-color-border);
+		}
 	}
 `;
 
