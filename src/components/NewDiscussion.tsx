@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import {ThemeProvider} from "@material-ui/core/styles";
 import {useHistory} from "react-router-dom";
-import {getAndSetTokens} from "../utils/utils";
+import {getAndSetTokens, getIdFromJwt, JWTFetch} from "../utils/utils";
 import {darkTheme, useStyles} from "../material-ui/styles";
 
 type Props = {
@@ -30,26 +30,30 @@ const NewDiscussion: React.FC<Props> = ({setIsLoggedIn}) => {
 			...formData,
 			[e.target.name]: e.target.value.trim(),
 		});
-
-		console.log(formData);
 	};
 
 	const classes = useStyles();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		fetch(`${process.env.DJANGO_API_URL}/api/post/create/`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(Object.freeze(formData)),
-		})
-			.then(res => res.json())
-			.then(data => {
-				console.log(data);
+
+		const userId = getIdFromJwt();
+
+		if (userId) {
+			JWTFetch(`${process.env.DJANGO_API_URL}/api/post/create/`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(Object.freeze({...formData, author: userId})),
 			})
-			.catch(console.error);
+				.then(res => res.json())
+				.then(data => {
+					alert(`Your new post: ${data.title} has been created!`);
+					history.push(`/forum/category/${data.category}`);
+				})
+				.catch(console.error);
+		}
 	};
 
 	return (

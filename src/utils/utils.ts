@@ -161,3 +161,13 @@ export const getResponseByPrompt = (msg: string): string | null => {
 
 	return res;
 };
+
+export const getIdFromJwt = () => {
+	const xToken = localStorage.getItem("x-token");
+
+	if (xToken) {
+		const parsedToken = JSON.parse(atob(xToken.split(".")[1]));
+
+		return parsedToken.user_id;
+	}
+};
